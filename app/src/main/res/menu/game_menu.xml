@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/gggg"
+        android:title="Size">
+        <menu>
+            <item android:id="@+id/size3"
+                android:title="size 3"/>
+
+            <item android:id="@+id/size5"
+                android:title="size 5"/>
+        </menu>
+    </item>
+
+    <item
+        android:title="Play Mode">
+        <menu>
+            <item android:id="@+id/single"
+                android:title="Single Player"/>
+
+            <item android:id="@+id/twoplayer"
+                android:title="Two Player"/>
+        </menu>
+    </item>
+
+    <item android:id="@+id/about"
+        android:title="About Game">
+        </item>
+</menu>
