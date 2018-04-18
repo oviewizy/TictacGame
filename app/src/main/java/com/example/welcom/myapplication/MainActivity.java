@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.TextView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import java.util.Random;
 
@@ -49,28 +51,42 @@ public class MainActivity extends AppCompatActivity {
         for (int count = 0; count < 9; count++) {
             mBoard[count] = "";
         }
-        /* Choose a player at random between human and computer */
-        if (mSinglePlayerMode == true) {
-            /* Sets if computer plays first*/
-            //Random rand = new Random();
-            //int value= rand.nextInt(2)+ 1;
-            int value = 2;
 
-            if (value == 1) {
-                /* Computer plays first*/
-                Toast toastmsg = Toast.makeText(this, "Computer: (Player One) plays first!", Toast.LENGTH_LONG);
-                toastmsg.show();
-                mComPlaysFirst = true;
-                comPlaysFirstAsFirstPlayer();
-
-            } else {
-                /* Human plays first*/
-                Toast toastmsg = Toast.makeText(this, "Human: (Player Two) plays first!", Toast.LENGTH_LONG);
-                toastmsg.show();
-                mComPlaysFirst = false;
+        /*This dialog is used to determine the number of players in the system*/
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setTitle("TicTacToe Game Settings");
+        builder.setCancelable(false);
+        builder.setMessage("Please select the number of Players");
+        builder.setPositiveButton("Two Player", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id) {
+                setGametoTwoPlayter();
             }
+        });
+        builder.setNegativeButton("Single Player", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+     /* Choose a player at random between human and computer */
+                if (mSinglePlayerMode == true) {
+            /* Sets if computer plays first*/
+                    Random rand = new Random();
+                    int value= rand.nextInt(2)+ 1;
+                    if (value == 1) {
+                /* Computer plays first*/
+                        mComPlaysFirst = true;
+                        comPlaysFirstAsFirstPlayer();
 
-        }
+                    } else {
+                /* Human plays first*/
+                        mComPlaysFirst = false;
+                    }
+
+                }
+            }
+        });
+
+        builder.show();
+
+
 
     }
 
@@ -854,4 +870,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }// Closing braces of the class
